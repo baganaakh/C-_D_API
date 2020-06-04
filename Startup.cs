@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using AdminAPI2.Models;
 
 namespace AdminAPI2
 {
@@ -29,6 +31,8 @@ namespace AdminAPI2
         {
             services.AddAuthentication(AzureADB2CDefaults.BearerAuthenticationScheme)
                 .AddAzureADB2CBearer(options => Configuration.Bind("AzureAdB2C", options));
+            var connection = Configuration.GetConnectionString("AdminAPI");
+            services.AddDbContext<MainDatabaseContext>(options => options.UseSqlServer(connection));
             services.AddControllers();
         }
 
