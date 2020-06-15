@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using AdminAPI2.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdminAPI2.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class MarginsController : ControllerBase
     {
         private readonly MainDatabaseContext _context;
